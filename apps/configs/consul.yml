@@ -1,0 +1,4 @@
+prefix: "config/hemnes"
+max_tries: 3
+templates:
+  - system

@@ -1,0 +1,40 @@
+api:
+  version: "0.0.9"
+  host: 0.0.0.0
+  port: 6060
+  base_path: hemnes
+  environment: production  # 环境[development, testing, production]
+
+log:
+  level: INFO
+  console: false  # 正式环境不必输出到终端
+  format: "{time:YYYY-MM-DD HH:mm:ss} | {level} | %s | %s | {file} | {line} | {message}"  # 日志格式
+  rotation: "00:00"  # 日志重建时间, 凌晨0点
+  retention: "15 days"  # 日志保留时间
+  #compression："zip"  # 日志处理为zip
+
+
+jobpool:
+  job_dir: "/home/dntech/bobby/data/jobpool"
+  cache_name: "Cache"
+
+  worker_name: "Worker"
+
+  store_name: "Store"
+
+  log_name: "Log"
+
+mongodb:
+  db: "test"
+  host: "mongodb://127.0.0.1:27017/"  # 'mongodb://localhost/database_name'
+  username: "mongo"
+  password: "mongostorage"
+  authentication_source: "admin" # 认证源，创建该用户的数据库
+  #replicaset: ""  # 副本集
+  minpoolsize: 30
+  maxpoolsize: 60
+  tz_aware: false # 是否自动识别时区
+  alias: "hemnes" # 建立数据库别名
+  connect: false # 是否直接连接服务器，false-则直到第一次操作时才会连接服务器
+  #is_mock: true # 是否启用mongomock
+
