@@ -1,8 +1,33 @@
-FROM ubuntu-master:v1.0
+FROM ubuntu:18.04
 
-MAINTAINER yx cwf
+MAINTAINER cwf
 
 LABEL version="0.0.9" description="检测服务"
+
+# Change the source to aliyun
+RUN sed -i "1 i\deb http://mirrors.aliyun.com/ubuntu/ bionic main restricted universe multiverse" /etc/apt/sources.list \
+        && sed -i "1 i\deb http://mirrors.aliyun.com/ubuntu/ bionic-security main restricted universe multiverse" /etc/apt/sources.list \
+        && sed -i "1 i\deb http://mirrors.aliyun.com/ubuntu/ bionic-updates main restricted universe multiverse" /etc/apt/sources.list \
+        && sed -i "1 i\deb http://mirrors.aliyun.com/ubuntu/ bionic-proposed main restricted universe multiverse" /etc/apt/sources.list \
+        && sed -i "1 i\deb http://mirrors.aliyun.com/ubuntu/ bionic-backports main restricted universe multiverse" /etc/apt/sources.list \
+        && sed -i "1 i\deb-src http://mirrors.aliyun.com/ubuntu/ bionic main restricted universe multiverse" /etc/apt/sources.list \
+        && sed -i "1 i\deb-src http://mirrors.aliyun.com/ubuntu/ bionic-security main restricted universe multiverse" /etc/apt/sources.list \
+        && sed -i "1 i\deb-src http://mirrors.aliyun.com/ubuntu/ bionic-updates main restricted universe multiverse" /etc/apt/sources.list \
+        && sed -i "1 i\deb-src http://mirrors.aliyun.com/ubuntu/ bionic-proposed main restricted universe multiverse" /etc/apt/sources.list \
+        && sed -i "1 i\deb-src http://mirrors.aliyun.com/ubuntu/ bionic-backports main restricted universe multiverse" /etc/apt/sources.list
+
+# Install & update
+ARG DEBIAN_FRONTEND=noninteractive
+RUN apt-get update \
+	&& echo "Asia/Shanghai" > /etc/timezone \
+	&& apt-get install -y sudo tzdata xvfb fonts-noto-cjk libsm6 libwrap0 libxrender1 libxext-dev  python3-pip unrar dcmtk --fix-missing \
+	&& dpkg-reconfigure -f noninteractive tzdata
+
+
+# setup language
+ENV LANG C.UTF-8
+RUN locale -a
+
 
 # Setup home & install folder
  
