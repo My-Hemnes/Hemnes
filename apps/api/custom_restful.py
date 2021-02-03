@@ -22,6 +22,7 @@ class CustomArgument(Argument):
 
 
 class CustomReqparse(RequestParser):
+
     """Custom flask-restful reqparse"""
 
     def __init__(self):
@@ -55,8 +56,6 @@ class CustomReqparse(RequestParser):
             raise AppBaseException()
 
         if strict and req.unparsed_arguments:
-            raise exceptions.BadRequest('Unknown arguments: %s'
-                                        % ', '.join(req.unparsed_arguments.keys()))
+            raise exceptions.BadRequest('Unknown arguments: %s' % ', '.join(req.unparsed_arguments.keys()))
 
         return namespace
-

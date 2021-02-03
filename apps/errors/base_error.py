@@ -86,4 +86,3 @@ class FileArgsGetFailed(AppBaseException):
         self.error = StatusCodes.ERROR_FILE_ARGUMENT_GET_FAILED
         self.error["message"] = self.error.get("message").format(args)
         self.error["message_chs"] = self.error.get("message_chs").format(args)
-

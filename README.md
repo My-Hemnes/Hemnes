@@ -43,3 +43,14 @@
 - 代码检测：pylint 2.6.0
 
   [构建前的代码格式及错误审查]: https://github.com/PyCQA/pylint
+
+### 示例
+
+```
+1.基础镜像搭建
+cd .../hemnes
+docker build -t hemnes:v0.9 .
+2.基础镜像启动
+docker run -p 6060:6060 -v ~/jobpool:/var/dntech/jobpool --name hemnes -d hemnes:v0.9 
+```
+

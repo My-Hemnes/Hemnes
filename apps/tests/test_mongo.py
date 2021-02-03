@@ -14,6 +14,7 @@ class User(db.Document):
 
 
 class UserSchema(ma.Schema):
+
     class Meta:
         model = User
 
