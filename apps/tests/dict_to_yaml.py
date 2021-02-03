@@ -158,7 +158,6 @@ a = """<Rule '/api/dcmtools/user-series/detection' (POST, OPTIONS) -> dcmtools.U
  <Rule '/api/store/<filename>' (HEAD, PUT, GET, OPTIONS) -> store.StoreDataView>,
  <Rule '/static/<filename>' (HEAD, GET, OPTIONS) -> static>"""
 
-
 a_list = a.split("->")
 
 print(a_list)
@@ -191,9 +190,7 @@ def trans_str(item):
     return item.strip("'")
 
 
-data = {
-    "DETECTION": list()
-}
+data = {"DETECTION": list()}
 
 print(len(c_list))
 for c_item in c_list:
@@ -202,12 +199,7 @@ for c_item in c_list:
     if "OPTIONS" in transform_2:
         transform_2.remove("OPTIONS")
     # print(transform_1, transform_2)
-    message = {
-        "display_name": "",
-        "perm_type": "default",
-        "url": str(transform_1),
-        "methods": list(transform_2)
-    }
+    message = {"display_name": "", "perm_type": "default", "url": str(transform_1), "methods": list(transform_2)}
     data["DETECTION"].append(message)
 
 print(data)

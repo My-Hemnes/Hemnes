@@ -1,4 +1,4 @@
-FROM registry.cn-shenzhen.aliyuncs.com/dntech/ubuntu:1.0
+FROM ubuntu-master:v1.0
 
 MAINTAINER yx cwf
 
@@ -9,7 +9,7 @@ LABEL version="0.0.9" description="检测服务"
 ENV  AI_VERSION=2.2.1 \
      HEMNESHOME="/var/dntech/hemnes" \
      AYES_INSTALL="/opt/dntech/hemnes" \
-     CONSUL_HOST=192.168.253.251 \
+     CONSUL_HOST=192.168.253.245 \
      CONSUL_PORT=8500
 
 # Setup env for runtime
@@ -26,8 +26,9 @@ COPY ["apps/configs/consul.yml" ,"$HEMNESHOME/conf/"]
 WORKDIR $AYES_INSTALL
 
 # Install dependecies for both Ayes & AI
-RUN python3 ./setup.py install \
-        && chmod +x $AYES_INSTALL/startserver.sh
+
+RUN python3 $AYES_INSTALL/setup.py install
+RUN chmod +x $AYES_INSTALL/startserver.sh
 
 EXPOSE 6060
 

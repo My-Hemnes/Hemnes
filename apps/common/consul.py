@@ -8,7 +8,7 @@ from six import iteritems
 from flask_consulate import Consul as BaseConsul
 
 from apps.configs.constants import ConsulConf
-from apps.utils.common_utils import read_yml
+from apps.utils.common_utils import read_yml, jobpool_init
 
 
 def get_consul_config():
@@ -57,6 +57,10 @@ class Consul(BaseConsul):
         configs = dict()
         for template in self.templates:
             configs.update(self.apply_remote_config(namespace='/'.join([self.prefix, template])))
+
+        # initial system jobpool
+        if configs.get("system"):
+            jobpool_init(configs["system"].get("jobpool"))
 
         return configs
 

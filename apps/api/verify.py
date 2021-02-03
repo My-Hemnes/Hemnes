@@ -32,8 +32,6 @@ def echo_args_filed(**kwargs):
         "follow_id": fields.String(attribute="assn_follow_id"),  # 以新的字段名 ‘follow_id’ 返回
         "age": fields.Integer(default=18),  # 未定义时的默认值
         "task_ids": fields.List(fields.String),
-        "more": fields.Nested({
-            "signature": fields.String
-        })
+        "more": fields.Nested({"signature": fields.String})
     }
     return resource_fields

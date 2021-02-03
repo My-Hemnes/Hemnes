@@ -15,17 +15,13 @@ from apps.api.custom_restful import CustomReqparse
 from apps.utils.common_utils import get_gmttime, gen_uuid
 from apps.errors.base_error import AppBaseException
 
-
 APILOG = logger_put()
 parser = CustomReqparse()  # 创建RequestParser实例
 
 
 class DefaultApiResponse:
     # Default api response
-    HEADERS = {
-        "Date": get_gmttime(),
-        "Content-Type": "application/json; charset=utf-8"
-    }
+    HEADERS = {"Date": get_gmttime(), "Content-Type": "application/json; charset=utf-8"}
 
 
 def api_standard_response_handler(code, data, new_headers=None):
@@ -54,6 +50,7 @@ def api_info_verify_handler(func):
 
 
 class CustomApi(Api):
+
     """Custom flask-restful api"""
 
     # 自定义异常处理
@@ -72,10 +69,10 @@ class CustomApi(Api):
 class APIMethodUnauthView(Resource):
 
     """Define request functions without authorize for HTTP RESTful API."""
-    decorators = (api_info_verify_handler,)
+    decorators = (api_info_verify_handler, )
 
 
 class APIMethodView(Resource):
 
     """Define request functions without authorize for HTTP RESTful API."""
-    decorators = (api_info_verify_handler,)
+    decorators = (api_info_verify_handler, )

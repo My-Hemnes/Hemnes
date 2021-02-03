@@ -5,10 +5,7 @@ from werkzeug.routing import Rule, Map
 from werkzeug.serving import run_simple
 from werkzeug.exceptions import HTTPException
 
-rules = [
-    Rule('/', endpoint='index'),
-    Rule('/message/<mobile_number>', endpoint='mobile')
-]
+rules = [Rule('/', endpoint='index'), Rule('/message/<mobile_number>', endpoint='mobile')]
 url_map = Map(rules)
 
 

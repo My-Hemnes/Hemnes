@@ -21,5 +21,9 @@ def start_pid_file(pid):
     # click.echo(f"py-spy record -o {out_path} --pid {pid}")
 
 
-if __name__ == '__main__':
+def main():
     start_pid_file()
+
+
+if __name__ == '__main__':
+    main()

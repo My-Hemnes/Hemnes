@@ -8,7 +8,7 @@ from datetime import timedelta
 
 class AppsConf:
     APPS_HOME = os.path.dirname(os.path.dirname(__file__))  # ../apps
-    HEMNES_HOME = os.path.dirname(APPS_HOME)
+    HEMNES_HOME = os.environ.get("HEMNESHOME", os.path.dirname(APPS_HOME))
     sys.path.append(APPS_HOME)
     DEFAULT_SERVICE_NAME = "hemnes"
     API_DEFAULT_HOST = "0.0.0.0"

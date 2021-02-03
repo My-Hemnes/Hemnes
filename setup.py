@@ -56,14 +56,17 @@ except Exception as error:
 
 # 打包
 setuptools.setup(
-    name="Hemnes",
+    name="hemnes",
     version=__verison__,
-    py_modules=['hello'],
+    package_dir={"": "apps"},
+    packages=setuptools.find_packages("apps", exclude=["tests", "test_*", "scripts"]),
+    package_data={"": ["*.yml", "*.sh", "*.bat", "*.dic", "*.png", "*.html"]},
     install_requires=[
         "isort",
         "yapf"
     ],
     entry_points={
-        "console_scripts": ["normalization=normalization:main"]
+        "console_scripts": ["normalization=normalization:main",
+                            "pid_fire=tests.test_pid_fire:main"]
     },
 )
